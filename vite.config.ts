@@ -14,11 +14,21 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
-    minify: 'terser', // 确保这一行存在
-    terserOptions: {
-      compress: {
-        drop_console: true, // 生产环境移除 console
-        drop_debugger: true // 生产环境移除 debugger
+    minify: 'esbuild',
+    target: 'es2015',
+    chunkSizeWarningLimit: 600,
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          // 将 vue 和 vue-router 分离到 vendor 块
+          if (id.includes('node_modules')) {
+            if (id.includes('vue') || id.includes('vue-router')) {
+              return 'vendor'
+            }
+            return 'deps' // 其他依赖
+          }
+        }
       }
     }
   }
