@@ -33,6 +33,7 @@
     "jiti": "^2.5.1",
     "npm-run-all2": "^8.0.4",
     "oxlint": "~1.11.0",
+    "terser": "^5.44.0",
     "typescript": "~5.9.0",
     "vite": "npm:rolldown-vite@latest",
     "vite-plugin-vue-devtools": "^8.0.2",
